@@ -1,0 +1,133 @@
+body {
+    background-color: rgb(40,40,40);
+    color: rgb(235, 219, 178);
+    font-family: monospace;
+    font-size: 14px;
+    text-shadow: 0 0 4px #C8C8C8;
+    outline: 2px double #d79921;
+    margin: 25px;
+    padding: 10px;
+    box-shadow: 0 0 5px #756d5d, 0 0 5px #756d5d inset;
+    }
+
+h1 {
+    font-size: 14px;
+    font-family: monospace;
+    color: #d79921;
+    text-shadow: 0 0 4px #756d5d;
+    text-align: left;
+    }
+
+h3 {
+    font-size: 14px;
+    font-family: monospace;
+    color: rgb(235, 219, 178);
+    text-shadow: 0 0 4px #756d5d;
+    text-align: left;
+    }
+
+hr {
+     border: 1px double #d79921;
+     box-shadow: 0 0 5px #756d5d, 0 0 5px #756d5d inset;
+    }
+
+ul {
+    list-style-type: square;
+    font-size: 14px;
+  }
+
+a {
+    font-family: monospace;
+    color: #d79921;
+    text-shadow: 0 0 5px #756d5d;
+    }
+
+p:before {
+    content: ">>>";
+    margin-right: 2px;
+    color: #d79921;
+    font-size: 16px;
+    text-shadow: 0 0 5px #756d5d;
+    }
+
+p {
+    font-family: monospace;
+    font-size: 14px;
+  }
+
+p::after {
+    content: "\A0";
+    margin-left: 1px;
+    width: 5px;
+    height: 10px;
+    background-color: rgb(235, 219, 178);
+    text-shadow: 0 0 4px #C8C8C8;
+    -webkit-animation: blinking 1.0s infinite;
+    animation: blinking 1.5s infinite;
+    }
+
+@keyframes blinking {
+    0% {
+        background-color: rgb(40,40,40);
+        text-shadow: 0 0 0px #C8C8C8;
+        }
+    50% {
+        background-color: rgb(235, 219, 178);
+        text-shadow: 0 0 10px #C8C8C8;
+        box-shadow: 0 0 5px #C8C8C8;
+        }
+    100% {
+        background-color: rgb(40,40,40);
+        text-shadow: 0 0 0px #C8C8C8;
+        }
+    }
+
+table {
+    border: 2px solid #d79921;
+    box-shadow: 0 0 5px #756d5d,  0 0 5px #756d5d inset;
+    margin: 10px;
+    padding: 2px;
+    margin-left: auto;
+    margin-right: auto;
+    }
+
+th, td {
+    border: 2px solid #d79921;
+    box-shadow: 0 0 5px #756d5d, 0 0 5px #756d5d inset;
+    margin: 10px;
+    padding: 10px;
+    }
+
+code {
+    color: #d79921;
+    text-shadow: 0 0 5px #756d5d;
+    }
+
+.container {
+    width: 100%;
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    }
+
+.container pre {
+    color: #d79921;
+    text-shadow: 0 0 5px #756d5d;
+    display: inline-block;
+    text-align: left;
+    }
+
+.content{
+    flex-basis: 800px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    }
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.85;
+    width: 40%;
+    }
+
