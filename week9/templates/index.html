@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <title>Main page!</title>
+        <link rel="stylesheet"
+            href="{{ url_for('static', path='/style1.css') }}">
+    </head>
+    <body>
+        <h3>Quadratic equation solver.</h3>
+
+        <p>Enter coefficients of equation in the form of <b>a</b>*x**2 + <b>b</b>*x + <b>c</b></p>
+        
+        <form action="/main" method="post"
+                enctype="application/x-www-form-urlencoded">
+            Enter a:<br>
+            <input type="text" name="a" size="4" required><br>
+            Enter b:<br>
+            <input type="text" name="b" size="4" required><br>
+            Enter c:<br>
+            <input type="text" name="c" size="4" required><br>
+            <br>
+            <button type="submit">Plot!</button>
+        </form>
+
+        {% if a is defined %}
+            <h3>Numbers entered: </h3>
+            <h3>a: {{a}} b: {{b}} c: {{c}}</h3>
+            <h3>Roots: </h3>
+            {{roots}}
+            <br>
+            <img src="data:image/png;base64, {{picture}}" alt="plot">
+            {% else %}
+        {% endif %}
+
+    </body>
+</html>

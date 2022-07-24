@@ -1,0 +1,23 @@
+body {
+    background-color: rgb(40,40,40);
+    color: #d79921;
+    font-family: monospace;
+    font-size: 14px;
+    outline: 2px double #d79921;
+    margin: 25px;
+    padding: 10px;
+    }
+
+h1 {
+    font-size: 14px;
+    font-family: monospace;
+    color: #d79921;
+    text-align: left;
+    }
+
+h3 {
+    font-size: 14px;
+    font-family: monospace;
+    color: #d79921;
+    text-align: left;
+    }
