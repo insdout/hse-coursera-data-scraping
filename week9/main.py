@@ -5,6 +5,7 @@ import io
 import base64
 import matplotlib
 import numpy as np
+import json
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 app = FastAPI()
@@ -20,7 +21,9 @@ def find_roots(a, b, c):
     b = int(b)
     c = int(c)
     D = int(b) ** 2 - 4 * int(a) * int(c)
-    if a == b == 0:
+    if a == b == c == 0:
+        return [float("inf")]
+    elif a == b == 0:
         return []
     elif a == 0:
         return [-c/b]
@@ -49,7 +52,7 @@ async def root(request: Request, message='Hello, Coursera students'):
 
 @app.get("/solve")
 async def solve(request: Request, a, b, c):
-    return {"roots": find_roots(a, b, c)}
+    return json.JSONEncoder(allow_nan=True).encode(find_roots(a, b, c)) #{"roots": find_roots(a, b, c)}
 
 
 @app.post("/main")
@@ -60,7 +63,7 @@ async def show_plot(request: Request,
 
     roots = find_roots(a, b, c)
 
-    if not roots:
+    if not roots or roots[0] == float("inf"):
         if int(a) != 0:
             left = -int(b)/(2*int(a)) - 10
             right = -int(b)/(2*int(a)) + 10
@@ -87,11 +90,12 @@ async def show_plot(request: Request,
         fig = plt.figure()
         plt.plot(x, y, color=[0.84, 0.6, 0.13])
         plt.plot(x, zero, '--', color=[0.84, 0.6, 0.13])
-        plt.scatter(roots,
-                    np.zeros_like(roots),
-                    s=180,
-                    marker="+",
-                    color=[0.84, 0.6, 0.13])
+        if roots and roots[0] != float("inf"):
+            plt.scatter(roots,
+                        np.zeros_like(roots),
+                        s=180,
+                        marker="+",
+                        color=[0.84, 0.6, 0.13])
         ax = plt.gca()
         ax.set_facecolor((0.16, 0.16, 0.16))
         fig.patch.set_facecolor((0.16, 0.16, 0.16))
