@@ -8,8 +8,9 @@ import numpy as np
 import json
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
-app = FastAPI()
 
+
+app = FastAPI()
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
@@ -52,7 +53,8 @@ async def root(request: Request, message='Hello, Coursera students'):
 
 @app.get("/solve")
 async def solve(request: Request, a, b, c):
-    return json.JSONEncoder(allow_nan=True).encode(find_roots(a, b, c)) #{"roots": find_roots(a, b, c)}
+    return json.JSONEncoder(allow_nan=True).encode(find_roots(a, b, c))
+    # return {"roots": find_roots(a, b, c)}
 
 
 @app.post("/main")
