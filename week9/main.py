@@ -44,11 +44,11 @@ def func(a, b, c, x):
 
 
 @app.get("/")
-async def root(request: Request, message='Hello, Coursera students'):
+async def root(request: Request):
     # return {"message": "Hello World"}
     return templates.TemplateResponse("index.html",
-                                      {"request": request,
-                                       "message": message})
+                                      {"request": request}
+                                      )
 
 
 @app.get("/solve")
