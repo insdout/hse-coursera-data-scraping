@@ -4,6 +4,7 @@
 from imdb_helper_functions import helper_function_example
 
 
+
 def get_actors_by_movie_soup(cast_page_soup, num_of_actors_limit=None):
     actors_list = []
     cast_list = cast_page_soup.find('table', class_='cast_list')
@@ -15,8 +16,24 @@ def get_actors_by_movie_soup(cast_page_soup, num_of_actors_limit=None):
 
 
 def get_movies_by_actor_soup(actor_page_soup, num_of_movies_limit=None):
-    # your code here
-    return # your code here
+    filmograpy = actor_page_soup.find('div', class_='filmo-category-section')
+    films_all = filmograpy.find_all('div', attrs={"class": ["filmo-row odd", "filmo-row even"]})
+    films_list = []
+    counter = 0
+    for film in films_all:
+        film_name = film.find("a").text.strip()
+        film_link = film.find("a")["href"].strip()
+        film_year = film.find("span", class_="year_column").text.strip()
+        film_notes = film.find("b").next_sibling.strip()
+        if not film_notes and film_year:
+            counter += 1
+            if num_of_movies_limit:
+                if counter >= num_of_movies_limit:
+                    break
+            films_list.append(tuple((film_name, film_link)))
+            # print("APPENDED-> name:", film_name, "link:", film_link, "year:", film_year, "notes:", film_notes)
+        # print("name:", film_name, "link:", film_link, "year:", film_year, "notes:", film_notes)
+    return films_list
 
 
 def get_movie_distance(actor_start_url, actor_end_url,
