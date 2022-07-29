@@ -9,10 +9,13 @@ import urllib
 from collections import deque
 import pickle
 
-with open('movie_to_actors.pkl', 'rb') as f:
-    movie_to_actors = pickle.load(f)
-with open('actor_to_films.pkl', 'rb') as f:
-    actor_to_films = pickle.load(f)
+cache = False
+
+if cache:
+    with open('movie_to_actors.pkl', 'rb') as f:
+        movie_to_actors = pickle.load(f)
+    with open('actor_to_films.pkl', 'rb') as f:
+        actor_to_films = pickle.load(f)
 
 
 def get_actors_by_movie_soup(cast_page_soup, num_of_actors_limit=None):
@@ -30,7 +33,7 @@ def get_actors_by_movie_soup(cast_page_soup, num_of_actors_limit=None):
 
 
 def get_movies_by_actor_soup(actor_page_soup, num_of_movies_limit=None):
-    filmograpy = actor_page_soup.find('div', class_='filmo-category-section')
+    filmograpy = actor_page_soup.find('div', attrs={'id':['filmo-head-actor', 'filmo-head-actress']}).find_next('div', class_='filmo-category-section')
     films_all = filmograpy.find_all('div', attrs={"class": ["filmo-row odd", "filmo-row even"]})
     films_list = []
     counter = 0
